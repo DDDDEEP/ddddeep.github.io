@@ -7,7 +7,7 @@ author:     "DEEP"
 header-img: "img/home-bg.jpg"
 catalog: true
 tags:
-    -   安装/部署
+    -   Linux
 ---
 
 ## 序言
@@ -93,11 +93,11 @@ php-fpm 可使用 UNIX Socket 和 TCP 两种监听方式
 
 关于两种方式的区别，引用一段我觉得比较好的解释：
 
->It's basically a tradeoff between performance and flexibility. Unix domain sockets will give you a bit better performance, while a socket connected to localhost gives you a bit better portability. You can easily move the server app to another OS by just changing the IP address from localhost to a different hostname.
+> It's basically a tradeoff between performance and flexibility. Unix domain sockets will give you a bit better performance, while a socket connected to localhost gives you a bit better portability. You can easily move the server app to another OS by just changing the IP address from localhost to a different hostname.
 >
->A Unix domain socket uses the local file system to create an IPC mechanism between the server and client processes. You will see a file in /var somewhere when the Unix domain socket is connected.
+> A Unix domain socket uses the local file system to create an IPC mechanism between the server and client processes. You will see a file in /var somewhere when the Unix domain socket is connected.
 >
->If you are looking for purely the ultimate performance solution you may want to explore a shared memory IPC. But, that's a little bit more complex.
+> If you are looking for purely the ultimate performance solution you may want to explore a shared memory IPC. But, that's a little bit more complex.
 
 简单地说就是 UNIX Socket 方式性能更好但不易分离和移植
 
@@ -165,7 +165,7 @@ node -v
 
 若不知道当前 Ghost 版本对应的最新 Node.js 版本
 
-可以继续进行下部分安装 Ghost 的步骤，直至 Ghost 运行失败时，运行命令`ghost doctor`
+可以继续进行下部分安装 Ghost 的步骤，直至 Ghost 运行失败时，运行命令 `ghost doctor`
 
 即可知道其支持的最新 Node.js 版本
 
@@ -193,7 +193,7 @@ cd /var/www/ghost
 ghost install
 ```
 
-`ghost install`过程中一系列的问题参考 [Ghost 文档此处](https://docs.ghost.org/install/ubuntu/#install-questions)，其中 SSL 可先不配置
+`ghost install` 过程中一系列的问题参考 [Ghost 文档此处](https://docs.ghost.org/install/ubuntu/#install-questions)，其中 SSL 可先不配置
 
 ### 安装  SSL
 
@@ -214,19 +214,19 @@ sudo letsencrypt certonly --standalone
 
 过程中需要输入邮箱地址，然后输入域名
 
-若希望访问博客时中不带 www，以使 URL 更简洁，则输入`example.com`格式的域名即可
+若希望访问博客时中不带 www，以使 URL 更简洁，则输入 `example.com` 格式的域名即可
 
-若操作成功后，存在目录`/etc/letsencrypt/live/example.com/`，则表示注册证书成功
+若操作成功后，存在目录 `/etc/letsencrypt/live/example.com/`，则表示注册证书成功
 
 证书有效期为 90 天，证书过期后
 
-同样停止 Nginx，运行`sudo letsencrypt certonly --standalone`即可更新证书
+同样停止 Nginx，运行 `sudo letsencrypt certonly --standalone` 即可更新证书
 
 ## 配置 Nginx
 
 ### 站点配置说明
 
-来到目录`/etc/nginx`下，站点的配置相关文件与文件夹如下：
+来到目录 `/etc/nginx` 下，站点的配置相关文件与文件夹如下：
 
 ```bash
 ├── conf.d
@@ -237,11 +237,11 @@ sudo letsencrypt certonly --standalone
 
 关于站点的设置，有三种配置方式：
 
-1.  直接写入`nginx.conf`中
-2.  在`conf.d`中新建站点文件
-3.  在`sites-available`中新建站点文件，然后在`sites-enabled`中创建软链接
+1.  直接写入 `nginx.conf` 中
+2.  在 `conf.d` 中新建站点文件
+3.  在 `sites-available` 中新建站点文件，然后在 `sites-enabled` 中创建软链接
 
-其实三种方案原理是一样的，见`nginx.conf`，有`include`项：
+其实三种方案原理是一样的，见 `nginx.conf`，有 `include` 项：
 
 ```bash
 # #
@@ -252,30 +252,30 @@ include /etc/nginx/conf.d/*.conf;
 include /etc/nginx/sites-enabled/*;
 ```
 
-但直接写入`nginx.conf`中不便于管理
+但直接写入 `nginx.conf` 中不便于管理
 
-用`conf.d`管理站点比较方便，但若需要临时关闭几个站点而日后又可能重启站点时，则需要将配置文件移出或重命名
+用 `conf.d` 管理站点比较方便，但若需要临时关闭几个站点而日后又可能重启站点时，则需要将配置文件移出或重命名
 
-而`sites-available`中可存放所有站点的配置项，然后将实际需要使用的站点软链接到`sites-enabled`即可
+而 `sites-available` 中可存放所有站点的配置项，然后将实际需要使用的站点软链接到 `sites-enabled` 即可
 
-本人选用`sites-*`方案进行站点的配置：
+本人选用 `sites-*` 方案进行站点的配置：
 
 ### 配置过程
 
-首先上面安装过程可能自动为`nginx.conf`添加了配置内容
+首先上面安装过程可能自动为 `nginx.conf` 添加了配置内容
 
-所以先打开`nginx.conf`，删掉`http`块段里存在的`server`块段
+所以先打开 `nginx.conf`，删掉 `http` 块段里存在的 `server` 块段
 
-然后移除在`sites-available`下的默认站点文件`default`，预防万一也可以备份一下
+然后移除在 `sites-available` 下的默认站点文件 `default`，预防万一也可以备份一下
 
 然后新建两个分别监听 80、443 端口的配置文件
 
 **注意，同一个端口的配置好像只能写在同一个文件内，否则可能出错
 如果读者有较好的配置方案的话，希望能和博主分享下~**
 
-为了更直观，分别命名为`80`、`443`
+为了更直观，分别命名为 `80`、`443`
 
-然后创建软链接到`sites-enabled`：
+然后创建软链接到 `sites-enabled`：
 
 ```bash
 ln -s /etc/nginx/sites-available/80 /etc/nginx/sites-enabled/80
@@ -293,7 +293,7 @@ ln -s /etc/nginx/sites-available/443 /etc/nginx/sites-enabled/443
     └── 443 -> /etc/nginx/sites-available/443
 ```
 
-然后配置文件`443`：
+然后配置文件 `443`：
 ```nginx
 server {
         index index.html index.htm index.nginx-debian.html;
@@ -356,7 +356,7 @@ server {
 }
 ```
 
-再配置文件`80`：
+再配置文件 `80`：
 ```nginx
 server {
         listen 80;
@@ -373,29 +373,29 @@ server {
 }
 ```
 
-注意需要将带`###`前缀的行处里的域名修改成自己对应的域名，并去掉`###`
+注意需要将带 `###` 前缀的行处里的域名修改成自己对应的域名，并去掉 `###`
 
 ### 站点配置讲解
 
 #### 443
 
-443 端口是 https 对应的端口，当带有`https://`前缀访问 URL 时，便会通过 443 端口访问
+443 端口是 https 对应的端口，当带有 `https://` 前缀访问 URL 时，便会通过 443 端口访问
 
-第一个`server`块段将请求转发到了`http://127.0.0.1:2368`，该地址是 Ghost 默认的访问 URL
+第一个 `server` 块段将请求转发到了 `http://127.0.0.1:2368`，该地址是 Ghost 默认的访问 URL
 
-所以访问`https://example.com`或`https://www.example.com`后，即可访问 Ghost 博客
+所以访问 `https://example.com` 或 `https://www.example.com` 后，即可访问 Ghost 博客
 
-因为证书注册为`https://example.com`形式
+因为证书注册为 `https://example.com` 形式
 
-因此访问`https://www.example.com`时会自动转为`https://example.com`
+因此访问 `https://www.example.com` 时会自动转为 `https://example.com`
 
-第二个`server`块段为 phpMyAdmin 的配置，访问`https://msyql.example.com`时即可访问该站点
+第二个 `server` 块段为 phpMyAdmin 的配置，访问 `https://msyql.example.com` 时即可访问该站点
 
-注意该站点需要解析 PHP 文件，因此需要加上配置项`location ~ \.php$`
+注意该站点需要解析 PHP 文件，因此需要加上配置项 `location ~ \.php$`
 
 其将会请求交给 FastCGI 接口，配置项写上对应的 php-fpm 的监听方式
 
-本人选用 TCP 监听方式，所以配置项为`127.0.0.1:9000`
+本人选用 TCP 监听方式，所以配置项为 `127.0.0.1:9000`
 
 #### 80
 
@@ -411,11 +411,11 @@ server {
 service nginx restart
 ```
 
-访问`https://example.com`，即可浏览博客首页
+访问 `https://example.com`，即可浏览博客首页
 
-访问`https://example.com/ghost`，可进入博客后台
+访问 `https://example.com/ghost`，可进入博客后台
 
-访问`http://www.example.com`，可见链接转为了`https://example.com`
+访问 `http://www.example.com`，可见链接转为了 `https://example.com`
 
 ## 本地 VirtualBox 下搭建 Ghost 博客
 
@@ -423,11 +423,11 @@ service nginx restart
 
 Ghost 博客原理为提供了一系列接口，根据这些接口，即可开发不同的主题
 
-Ghost 安装好后，默认自带了主题`casper`，其对应路径为`/var/www/ghost/content/themes/capser`
+Ghost 安装好后，默认自带了主题 `casper`，其对应路径为 `/var/www/ghost/content/themes/capser`
 
 当想更换主题时，可找到想更换的主题对应的 git 仓库地址
 
-将其 clone 到`/var/www/ghost/content/themes`下面，然后重启 Ghost
+将其 clone 到 `/var/www/ghost/content/themes` 下面，然后重启 Ghost
 
 此时再打开 Ghost 后台 -> Design，即可更换主题
 
@@ -453,13 +453,13 @@ Ghost 安装好后，默认自带了主题`casper`，其对应路径为`/var/www
 sudo vim /etc/network/interfaces
 ```
 
-里面的`lo`为本地回环，不用修改
+里面的 `lo` 为本地回环，不用修改
 
-而`enp0s*`为不同网卡的对应配置，找到对应桥接网卡的`enp0s*`
+而 `enp0s*` 为不同网卡的对应配置，找到对应桥接网卡的 `enp0s*`
 
- ( 本人`enp0s3`对应网卡 1 配置，`enp0s8`对应网卡 2 配置，不知道不同机器是否一样，仅供参考 )
+ ( 本人 `enp0s3` 对应网卡 1 配置，`enp0s8` 对应网卡 2 配置，不知道不同机器是否一样，仅供参考 )
 
-根据主机上对应网卡的配置 ( 在命令行输入`ipconfig /all`查看 )，配置对应桥接网卡的静态 IP
+根据主机上对应网卡的配置 ( 在命令行输入 `ipconfig /all` 查看 )，配置对应桥接网卡的静态 IP
 
 其中 IP 地址中第 4 个数字部分可任取与主机不同的值，网关、子网掩码则与主机一致
 
@@ -517,7 +517,7 @@ Ghost 有提供本地安装模式，本地安装模式下数据库由 SQLite3 �
 
 因此本地安装只需要安装 Nginx 与 Node.js 即可
 
-然后 Ghost 安装命令换为`ghost install local`，其它步骤一致
+然后 Ghost 安装命令换为 `ghost install local`，其它步骤一致
 
 #### 配置共享文件夹
 
@@ -550,7 +550,7 @@ sudo mount -t vboxsf <共享文件夹的名称> /mnt/share
 
 因此应编辑系统的挂载配置文件，使其每次开机启动后自动挂载
 
-编辑文件`/etc/fstab`，在最后加上一行：
+编辑文件 `/etc/fstab`，在最后加上一行：
 
 ```bash
 <共享文件夹的名称> /mnt/share/ vboxsf defaults 0 0
@@ -560,7 +560,7 @@ sudo mount -t vboxsf <共享文件夹的名称> /mnt/share
 
 配置好共享文件夹后，即可 clone 主题项目到上面
 
-然后创建软链接到`/var/www/ghost/content/themes`下面，重启 Ghost
+然后创建软链接到 `/var/www/ghost/content/themes` 下面，重启 Ghost
 
 即可使用并在本地修改主题，修改好后更新到服务器上，即可实现同步修改
 
@@ -576,7 +576,7 @@ Ghost 管理后台 -> Labs 内已经没有开启它的选项
 
 所以依赖它开发的主题均会出现报错，不过也是有解决方案的
 
-在主题的`package.json`内找到`engines`项，修改为：
+在主题的 `package.json` 内找到 `engines` 项，修改为：
 
 ```json
 "engines": {
@@ -590,7 +590,7 @@ Ghost 管理后台 -> Labs 内已经没有开启它的选项
 
 ### 更换启动 Ghost 的用户
 
-Ghost 的启动权限不仅受 Linux 权限系统控制，还与用户根目录内的`.ghost`配置文件有关
+Ghost 的启动权限不仅受 Linux 权限系统控制，还与用户根目录内的 `.ghost` 配置文件有关
 
 因此要更换启动 Ghost 的用户时，不仅要更改文件夹权限，还要复制配置文件
 

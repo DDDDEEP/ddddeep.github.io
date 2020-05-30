@@ -52,17 +52,39 @@
                 text-overflow: ellipsis;
             }
         }
-        .h1_nav,.h2_nav,.h3_nav{
-            margin-left: 0;
+        .big_nav {
             font-size: 13px;
             font-weight: bold;
         }
-        .h4_nav,.h5_nav,.h6_nav{
-            margin-left: 10px;
+        .small_nav {
             font-size: 12px;
             a{
                 max-width: 170px;
             }
+        }
+        .h1_nav{
+            margin-left: 0px;
+            .big_nav;
+        }
+        .h2_nav{
+            margin-left: 10px;
+            .big_nav;
+        }
+        .h3_nav{
+            margin-left: 20px;
+            .big_nav;
+        }
+        .h4_nav{
+            margin-left: 30px;
+            .small_nav;
+        }
+        .h5_nav{
+            margin-left: 40px;
+            .small_nav;
+        }
+        .h6_nav{
+            margin-left: 50px;
+            .small_nav;
         }
         .active{
             a{

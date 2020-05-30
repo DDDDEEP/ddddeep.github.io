@@ -166,6 +166,7 @@ brew install python
 brew install git
 brew install -g node
 brew install mosh
+brew install ruby
 npm install -g typescript
 ```
 
@@ -248,11 +249,21 @@ plugins=(
     ripgrep
 )
 eval "$(fasd --init auto)"
+
+...
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# 因为其它不少工作的文章都使用 .bash_profile，为了方便还是额外弄一个
+source ~/.bash_profile
 ```
 
 alias：
 
 ```bash
+# ~/.bash_profile
 # 代理
 alias proxy='export all_proxy=socks5://127.0.0.1:1081'
 alias unproxy='unset all_proxy'
@@ -272,6 +283,9 @@ alias c='fasd -f -e code'
 
 # VSCode 权限
 alias forcode='sudo chown -R admin '
+
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 ```
 
 最后执行：
@@ -354,7 +368,7 @@ source ~/.zshrc
 
 个人快捷键配置，在 `/Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A/Resources/IDETextKeyBindingSet.plist` 最后添加下面内容：
 
-```plist
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -376,5 +390,3 @@ source ~/.zshrc
 ```
 
 在 `/Users/admin/Library/Developer/Xcode/UserData/KeyBindings` 新建文件配置文件 `My.idekeybindings`，内容见 [Gist 地址](https://gist.github.com/DDDDEEP/d4ea14fa1f89619a7e2ee25f847f43c7)。
-
-[Gist 地址](https://gist.github.com/DDDDEEP/d4ea14fa1f89619a7e2ee25f847f43c7)

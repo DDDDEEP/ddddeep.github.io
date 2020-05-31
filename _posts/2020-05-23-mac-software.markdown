@@ -366,27 +366,10 @@ source ~/.zshrc
 
 写下该文字时 Xcode 版本为 11.5。
 
-个人快捷键配置，在 `/Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A/Resources/IDETextKeyBindingSet.plist` 最后添加下面内容：
+Xcode Extension：
 
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    ......
-    <!-- Begin -->
-    <key>custom</key>
-    <dict>
-        <key>Duplicate Current Line</key>
-        <string>moveToBeginningOfLine:, deleteToEndOfLine:, yank:, insertNewline:, moveToBeginningOfLine:, yank:</string>
-		<key>Insert New Line Below Current Line</key>
-		<string>moveToEndOfLine:, insertNewline:</string>
-		<key>Insert New Line Before Current Line</key>
-		<string>moveToBeginningOfLine:, moveUp:, moveToEndOfLine:, insertNewline:</string>
-    </dict>
-    <!-- End -->
-</dict>
-</plist>
-```
+- TextPlus：补全行编辑功能。
+- XCFormat：代码格式化。
+- Soothe：等号对齐和行排序。
 
-在 `/Users/admin/Library/Developer/Xcode/UserData/KeyBindings` 新建文件配置文件 `My.idekeybindings`，内容见 [Gist 地址](https://gist.github.com/DDDDEEP/d4ea14fa1f89619a7e2ee25f847f43c7)。
+个人快捷键配置，在 `/Users/admin/Library/Developer/Xcode/UserData/KeyBindings` 新建文件配置文件 `My.idekeybindings`，内容见 [Gist 地址](https://gist.github.com/DDDDEEP/d4ea14fa1f89619a7e2ee25f847f43c7)。

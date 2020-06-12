@@ -88,6 +88,7 @@ tags:
 - **Scroll Reverser**：鼠标滚动反转工具。
 
 - **eZip**：归档工具。
+- **Charles**：网络抓包。
 - **IINA**：视频软件。
 - **Dash**：API 文档。
 - **Fork**：Git 工具。
@@ -373,3 +374,5 @@ Xcode Extension：
 - Soothe：等号对齐和行排序。
 
 个人快捷键配置，在 `/Users/admin/Library/Developer/Xcode/UserData/KeyBindings` 新建文件配置文件 `My.idekeybindings`，内容见 [Gist 地址](https://gist.github.com/DDDDEEP/d4ea14fa1f89619a7e2ee25f847f43c7)。
+
+[调试教程](https://objccn.io/issue-19-2/)

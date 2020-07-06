@@ -96,10 +96,11 @@ tags:
 - **Mounty**：NTFS 读写。
 - **Postman**：API 请求工具。
 - **Typora**：Markdown 编辑器，但比较卡。
+- **HandBrake**：视频压缩。
 - **Chrome**：
 - **VSCode**：
 - **Iterm2**：
-- **PDFpen / Adobe Reader**
+- **PDFpen / Adobe Reader / PDFelement**
 - **Bartender 3** 菜单栏图标管理工具。
 - ~~**Clipy**~~： 如果不用 Alfred，这个是比较好的一个剪贴板历史软件。
 

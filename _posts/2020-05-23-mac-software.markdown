@@ -101,13 +101,13 @@ tags:
 - **VSCode**：
 - **Iterm2**：
 - **PDFpen / Adobe Reader / PDFelement**
-- **Bartender 3** 菜单栏图标管理工具。
+- **Bartender 3 / Dozer** 菜单栏图标管理工具。
 - ~~**Clipy**~~： 如果不用 Alfred，这个是比较好的一个剪贴板历史软件。
 
 ### brew cask
 
 ```bash
-brew cask install scroll-reverser visual-studio-code ezip iina dash fork lepton mounty postman typora iterm2
+brew cask install scroll-reverser visual-studio-code ezip iina fork postman typora iterm2
 ```
 
 ## Chrome
@@ -175,16 +175,34 @@ npm install -g typescript
 Git 多账号，编辑 ~/.ssh/config：
 ```bash
 #github
-       Host github.com    
+       Host self  #别名
        HostName github.com
        IdentityFile ~/.ssh/id_rsa_github
-       User username
+       User selfname
 
 #gitlab
-       Host gitlab.com
+       Host work
        HostName gitlab.com
-       IdentityFile ~/.ssh/id_rsa_gitlab
-       User username
+       IdentityFile ~/.ssh/id_rsa
+       User workname
+```
+
+```bash
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+```
+
+实际命令例如：`git clone git@self:NAME/REPO`。
+
+也可也修改现有仓库的 `.git/config`:
+```bash
+[user]
+    email = self@email.com
+    name = selfname
+[remote "origin"]
+	url = git@self:NAME/REPO
 ```
 
 ### 终端

@@ -196,13 +196,19 @@ git config --global alias.st status
 
 实际命令例如：`git clone git@self:NAME/REPO`。
 
-也可也修改现有仓库的 `.git/config`:
+需要修改现有仓库的 `.git/config`:
 ```bash
 [user]
     email = self@email.com
     name = selfname
 [remote "origin"]
 	url = git@self:NAME/REPO
+```
+
+或
+
+```bash
+git config user.name = selfname && git config user.email = self@email.com
 ```
 
 ### 终端

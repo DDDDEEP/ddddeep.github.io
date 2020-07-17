@@ -44,7 +44,7 @@ tags:
 
 配置同步方面个人仍采用土方法（
 
-### Workflows
+### ~~Workflows~~（uTools）
 
 最强大的功能，可以作为各种操作的入口，使日常操作思维更简单。
 
@@ -62,6 +62,8 @@ tags:
 - [**Kill Process**](https://github.com/nathangreenstein/alfred-process-killer)：杀进程。
 - [**NSC**](https://github.com/obstschale/NSC)：进制相关。
 - [**TimeZones**](https://github.com/jaroslawhartman/TimeZones-Alfred)：时区。
+
+后来发现了 uTools，插件的下载和管理更方便，更为推荐。
 
 ## 软件
 
